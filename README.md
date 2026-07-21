@@ -23,6 +23,15 @@ The target address is represented as `<MACHINE_IP>` because TryHackMe assigns a 
 
 `Nmap → robots.txt → Username Discovery → Hydra → SSH → Sudo Misconfiguration → Writable Python Script → Root`
 
+## Tools Used
+
+- Nmap
+- Web browser
+- Hydra
+- SSH
+- Linux command line
+- Python
+
 ## Table of contents
 
 - [Reconnaissance](#reconnaissance)
@@ -43,14 +52,6 @@ The target address is represented as `<MACHINE_IP>` because TryHackMe assigns a 
 - [Remediation](#remediation)
 - [Lessons learned](#lessons-learned)
 
-## Tools Used
-
-- Nmap
-- Web browser
-- Hydra
-- SSH
-- Linux command line
-- Python
 
 ## Reconnaissance
 
