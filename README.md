@@ -157,7 +157,7 @@ ls /root
 
 ### Reviewing sudo permissions
 
-I inspected the sudo rules available to meliodas.
+I inspected the sudo rules available to `meliodas`.
 
 ```bash
 sudo -l
@@ -171,7 +171,7 @@ The relevant rule was:
 
 This rule allowed a matching Python interpreter to execute `/home/meliodas/bak.py` as root without requiring a password.
 
-Although the existing `bak.py` file was write-protected, it was located inside the `meliodas` home directory. Because meliodas had write permission on the directory, the file could be removed and recreated with the same name.
+Although the existing `bak.py` file was write-protected, it was located inside the `meliodas` home directory. Because `meliodas` had write permission on the directory, the file could be removed and recreated with the same name.
 
 ![Sudo permissions for bak.py](images/09-sudo-permissions.png)
 
@@ -183,7 +183,7 @@ I first removed the original write-protected script:
 rm /home/meliodas/bak.py
 ```
 
-When prompted to confirm the removal of the write-protected file, I entered  `y `.
+When prompted to confirm the removal of the write-protected file, I entered `y`.
 
 ```text
 rm: remove write-protected regular file '/home/meliodas/bak.py'? y
@@ -199,16 +199,6 @@ The sudo rule referenced the file path rather than validating the original file'
 
 ![bak.py replaced with a Bash-launching Python payload](images/10-python-payload.png)
 
-
-Replacing the sudo-authorized script
-
-I recreated `bak.py` with a short Python payload that replaces the interpreter process with a Bash shell. The `-p` option tells Bash to preserve its effective user ID.
-
-```bash
-echo 'import os; os.execl("/bin/bash", "bash", "-p")' > /home/meliodas/bak.py
-```
-
-![bak.py replaced with a Bash-launching Python payload](images/10-python-payload.png)
 
 ### Obtaining a root shell
 
