@@ -19,6 +19,10 @@ An authorized lab walkthrough covering service enumeration, SSH credential disco
 
 The target address is represented as `<MACHINE_IP>` because TryHackMe assigns a temporary address when the machine is deployed. Screenshots retain the address used during this authorized lab session.
 
+## Attack Path
+
+`Nmap → robots.txt → Username Discovery → Hydra → SSH → Sudo Misconfiguration → Writable Python Script → Root`
+
 ## Table of contents
 
 - [Reconnaissance](#reconnaissance)
