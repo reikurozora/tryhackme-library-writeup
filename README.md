@@ -40,7 +40,6 @@ The target address is represented as `<MACHINE_IP>` because TryHackMe assigns a 
   - [Robots.txt clue](#robotstxt-clue)
   - [Username discovery](#username-discovery)
   - [Password-list verification](#password-list-verification)
-- [Reconnaissance](#reconnaissance)
 - [SSH credential discovery](#ssh-credential-discovery)
 - [Initial access](#initial-access)
 - [User flag](#user-flag)
