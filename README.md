@@ -21,8 +21,7 @@ The target address is represented as `<MACHINE_IP>` because TryHackMe assigns a 
 
 ## Attack path
 
-`Nmap → robots.txt → Username Discovery → Hydra → SSH → Sudo Misconfiguration → Replaceable Python Script → Root`
-
+`Nmap → robots.txt → Username discovery → Hydra → SSH → Sudo misconfiguration → Replaceable Python script → Root`
 ## Tools used
 
 - Nmap
