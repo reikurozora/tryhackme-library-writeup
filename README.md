@@ -135,7 +135,7 @@ After accepting the host key and authenticating, I obtained a shell as `meliodas
 I listed the user's home directory, located `user.txt`, and read the file.
 
 ```bash
-ls -la
+ls -a
 cat user.txt
 ```
 
