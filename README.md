@@ -33,6 +33,7 @@ The target address is represented as `<MACHINE_IP>` because TryHackMe assigns a 
 - Python
 
 ## Table of contents
+
 - [Attack path](#attack-path)
 - [Tools used](#tools-used)
 - [Reconnaissance](#reconnaissance)
