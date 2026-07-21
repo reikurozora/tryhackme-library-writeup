@@ -22,6 +22,7 @@ The target address is represented as `<MACHINE_IP>` because TryHackMe assigns a 
 ## Attack path
 
 `Nmap → robots.txt → Username discovery → Hydra → SSH → Sudo misconfiguration → Replaceable Python script → Root`
+
 ## Tools used
 
 - Nmap
@@ -103,7 +104,11 @@ ls -l /usr/share/wordlists
 
 ![rockyou.txt.gz in the Kali word-list directory](images/04-rockyou-wordlist.png)
 
-The Hydra build used in this session accepted the compressed list directly. On a system that requires plain-text input, the archive can instead be expanded with `gzip -dk`.
+The Hydra build used in this session accepted the compressed list directly. On systems that require plain-text input, the archive can be decompressed with:
+
+```bash
+gzip -dk /usr/share/wordlists/rockyou.txt.gz
+```
 
 ## SSH credential discovery
 
@@ -152,6 +157,10 @@ An attempt to list `/root` as `meliodas` returned `Permission denied`, confirmin
 ls /root
 ```
 
+```text
+ls: cannot open directory '/root': Permission denied
+```
+
 ![meliodas cannot access the root directory directly](images/08-root-access-denied.png)
 
 ### Reviewing sudo permissions
@@ -170,7 +179,7 @@ The relevant rule was:
 
 This rule allowed a matching Python interpreter to execute `/home/meliodas/bak.py` as root without requiring a password.
 
-Although the existing `bak.py` file was write-protected, it was located inside the `meliodas` home directory. Because `meliodas` had write permission on the directory, the file could be removed and recreated with the same name.
+Although the existing `bak.py` file was write-protected, it was located inside the `meliodas` home directory. Because `meliodas` had write and execute permissions on the parent directory, the file could be removed and recreated with the same name. In Linux, deleting a file depends primarily on write and execute permissions on its parent directory, not on write permission to the file itself.
 
 ![Sudo permissions for bak.py](images/09-sudo-permissions.png)
 
@@ -188,7 +197,7 @@ When prompted to confirm the removal of the write-protected file, I entered `y`.
 rm: remove write-protected regular file '/home/meliodas/bak.py'? y
 ```
 
-I then recreated `bak.py` with a Python payload that launches Bash while preserving the effective user ID:
+I then recreated `bak.py` with a Python payload that launches Bash. The `-p` option instructs Bash to preserve the effective user ID instead of dropping the elevated privileges.
 
 ```bash
 echo 'import os; os.execl("/bin/bash", "bash", "-p")' > /home/meliodas/bak.py
