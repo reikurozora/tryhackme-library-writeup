@@ -21,7 +21,7 @@ The target address is represented as `<MACHINE_IP>` because TryHackMe assigns a 
 
 ## Attack Path
 
-`Nmap → robots.txt → Username Discovery → Hydra → SSH → Sudo Misconfiguration → Writable Python Script → Root`
+`Nmap → robots.txt → Username Discovery → Hydra → SSH → Sudo Misconfiguration → Replaceable Python Script → Root`
 
 ## Tools Used
 
@@ -170,7 +170,7 @@ The relevant rule was:
 ```
 
 This rule allowed a matching Python interpreter to execute 
-/home/meliodas/bak.py as root without requiring a password.
+`/home/meliodas/bak.py` as root without requiring a password.
 
 Although the existing bak.py file was write-protected, it was located inside the `meliodas` home directory. Because meliodas had write permission on the directory, the file could be removed and recreated with the same name.
 
