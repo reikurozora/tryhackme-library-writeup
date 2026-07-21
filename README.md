@@ -39,6 +39,15 @@ The target address is represented as `<MACHINE_IP>` because TryHackMe assigns a 
 - [Remediation](#remediation)
 - [Lessons learned](#lessons-learned)
 
+- ## Tools Used
+
+- Nmap
+- Web browser
+- Hydra
+- SSH
+- Linux command line
+- Python
+
 ## Reconnaissance
 
 I began with Nmap default-script and service-version detection to identify reachable TCP services and collect initial HTTP metadata.
