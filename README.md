@@ -19,11 +19,11 @@ An authorized lab walkthrough covering service enumeration, SSH credential disco
 
 The target address is represented as `<MACHINE_IP>` because TryHackMe assigns a temporary address when the machine is deployed. Screenshots retain the address used during this authorized lab session.
 
-## Attack Path
+## Attack path
 
 `Nmap → robots.txt → Username Discovery → Hydra → SSH → Sudo Misconfiguration → Replaceable Python Script → Root`
 
-## Tools Used
+## Tools used
 
 - Nmap
 - Web browser
@@ -169,10 +169,9 @@ The relevant rule was:
 (ALL) NOPASSWD: /usr/bin/python* /home/meliodas/bak.py
 ```
 
-This rule allowed a matching Python interpreter to execute 
-`/home/meliodas/bak.py` as root without requiring a password.
+This rule allowed a matching Python interpreter to execute `/home/meliodas/bak.py` as root without requiring a password.
 
-Although the existing bak.py file was write-protected, it was located inside the `meliodas` home directory. Because meliodas had write permission on the directory, the file could be removed and recreated with the same name.
+Although the existing `bak.py` file was write-protected, it was located inside the `meliodas` home directory. Because meliodas had write permission on the directory, the file could be removed and recreated with the same name.
 
 ![Sudo permissions for bak.py](images/09-sudo-permissions.png)
 
@@ -184,13 +183,13 @@ I first removed the original write-protected script:
 rm /home/meliodas/bak.py
 ```
 
-When prompted to confirm the removal of the write-protected file, I entered y.
+When prompted to confirm the removal of the write-protected file, I entered  `y `.
 
 ```text
-rm: remove write-protected regular file /home/meliodas/bak.py? y
+rm: remove write-protected regular file '/home/meliodas/bak.py'? y
 ```
 
-I then recreated bak.py with a Python payload that launches Bash while preserving the effective user ID:
+I then recreated `bak.py` with a Python payload that launches Bash while preserving the effective user ID:
 
 ```bash
 echo 'import os; os.execl("/bin/bash", "bash", "-p")' > /home/meliodas/bak.py
@@ -241,7 +240,7 @@ cat /root/root.txt
 - A predictable username was disclosed through public page content.
 - A password-list hint was exposed through `robots.txt`.
 - Password-based SSH authentication allowed a common password to be recovered.
-- A writable script was authorized for passwordless root execution through sudo.
+- A script located in a user-writable directory was authorized for passwordless root execution through sudo.
 - A broad Python wildcard increased the impact of the unsafe sudo rule.
 
 ## Remediation
@@ -249,7 +248,7 @@ cat /root/root.txt
 - Do not expose account names or credential hints in public web content.
 - Disable password-based SSH authentication where possible and use strong keys.
 - Remove passwordless sudo rules unless they are strictly necessary.
-- Never authorize a user-writable script for privileged execution.
+- Never authorize scripts located in user-writable directories for privileged execution.
 - Avoid broad command wildcards in sudoers rules.
 - Store privileged scripts in root-owned, non-writable locations.
 
