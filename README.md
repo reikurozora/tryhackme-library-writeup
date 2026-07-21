@@ -43,7 +43,7 @@ The target address is represented as `<MACHINE_IP>` because TryHackMe assigns a 
 - [Remediation](#remediation)
 - [Lessons learned](#lessons-learned)
 
-- ## Tools Used
+## Tools Used
 
 - Nmap
 - Web browser
