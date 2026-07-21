@@ -74,7 +74,7 @@ The HTTP title identified the host as the Library machine, so I prioritized the 
 
 ## Web enumeration
 
-### robots.txt clue
+### Robots.txt clue
 
 The Nmap HTTP scripts reported a `robots.txt` file. I opened it in the browser and found an unusual user-agent value.
 
