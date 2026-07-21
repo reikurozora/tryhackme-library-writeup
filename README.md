@@ -201,7 +201,7 @@ The sudo rule referenced the file path rather than validating the original file'
 ![bak.py replaced with a Bash-launching Python payload](images/10-python-payload.png)
 
 
-### Replacing the sudo-authorized script
+Replacing the sudo-authorized script
 
 I recreated `bak.py` with a short Python payload that replaces the interpreter process with a Bash shell. The `-p` option tells Bash to preserve its effective user ID.
 
