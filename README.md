@@ -37,7 +37,7 @@ The target address is represented as `<MACHINE_IP>` because TryHackMe assigns a 
 - [Tools used](#tools-used)
 - [Reconnaissance](#reconnaissance)
 - [Web enumeration](#web-enumeration)
-  - [robots.txt clue](#robotstxt-clue)
+  - [Robots.txt clue](#robotstxt-clue)
   - [Username discovery](#username-discovery)
   - [Password-list verification](#password-list-verification)
 - [Reconnaissance](#reconnaissance)
